@@ -489,7 +489,11 @@ class Saferpay_Business_Model_Cc extends Saferpay_Business_Model_Abstract
 				->save();
 		}
 		$this->setCvc(null);
-		
+
+		// disable basket
+		$session = Mage::getSingleton('checkout/session');
+		$session->getQuote()->setIsActive(false)->save();
+
 		return $this;
 	}
 
